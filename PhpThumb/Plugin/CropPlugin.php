@@ -73,16 +73,16 @@ class CropPlugin implements PluginInterface
 			
 		// validate input
 		if (!is_numeric($this->_options['x']))
-			throw new InvalidArgumentException('Parameter "x" must be numeric');
+			throw new \InvalidArgumentException('Parameter "x" must be numeric');
 		
 		if (!is_numeric($this->_options['y']))
-			throw new InvalidArgumentException('Parameter "y" must be numeric');
+			throw new \InvalidArgumentException('Parameter "y" must be numeric');
 		
 		if (!is_numeric($this->_options['width']))
-			throw new InvalidArgumentException('Paramter "width" must be numeric');
+			throw new \InvalidArgumentException('Paramter "width" must be numeric');
 		
 		if (!is_numeric($this->_options['height']))
-			throw new InvalidArgumentException('Paramter "height" must be numeric');
+			throw new \InvalidArgumentException('Paramter "height" must be numeric');
 		
 			
 		$x = $this->_options['x'];

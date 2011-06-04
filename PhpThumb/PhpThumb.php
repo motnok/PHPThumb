@@ -132,7 +132,7 @@ class PhpThumb
 	public function output(OutputInterface $output)
 	{
 		if(is_null($this->_input))
-			throw new InvalidArgumentException('No input provided');
+			throw new \InvalidArgumentException('No input provided');
 			
 		$this->_processor->setInput($this->_input);
 		

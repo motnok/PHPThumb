@@ -152,16 +152,16 @@ class GdLibProcessor implements ProcessorInterface, CropableInterface,
 	{
 		// validate input
 		if (!is_numeric($x))
-			throw new InvalidArgumentException('$x must be numeric');
+			throw new \InvalidArgumentException('$x must be numeric');
 		
 		if (!is_numeric($y))
-			throw new InvalidArgumentException('$y must be numeric');
+			throw new \InvalidArgumentException('$y must be numeric');
 		
 		if (!is_numeric($width))
-			throw new InvalidArgumentException('$width must be numeric');
+			throw new \InvalidArgumentException('$width must be numeric');
 		
 		if (!is_numeric($height))
-			throw new InvalidArgumentException('$height must be numeric');
+			throw new \InvalidArgumentException('$height must be numeric');
 		
 		// create the working image
 		if (function_exists('imagecreatetruecolor'))
@@ -200,10 +200,10 @@ class GdLibProcessor implements ProcessorInterface, CropableInterface,
 	public function resize($width, $height)
 	{
 		if (!is_numeric($width))
-			throw new InvalidArgumentException('$width must be numeric');
+			throw new \InvalidArgumentException('$width must be numeric');
 		
 		if (!is_numeric($height))
-			throw new InvalidArgumentException('$height must be numeric');
+			throw new \InvalidArgumentException('$height must be numeric');
 			
 		// create the working image
 		if (function_exists('imagecreatetruecolor'))

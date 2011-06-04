@@ -69,7 +69,7 @@ class RotatePlugin implements PluginInterface
 			
 		// make sure our arguments are valid
 		if (!is_numeric($this->_options['degrees']))
-			throw new InvalidArgumentException('Paremeter "degrees" must be numeric');
+			throw new \InvalidArgumentException('Paremeter "degrees" must be numeric');
 		
 		$current->rotate($this->_options['degrees']);
 	}

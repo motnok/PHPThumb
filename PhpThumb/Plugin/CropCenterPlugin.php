@@ -75,13 +75,13 @@ class CropCenterPlugin extends ResizeAbstract implements PluginInterface
 		$height = $this->_options['height'];
 		
 		if(is_null($width) && is_null($height))
-			throw new InvalidArgumentException('Either "width" or "height" paramter must be defined');
+			throw new \InvalidArgumentException('Either "width" or "height" paramter must be defined');
 			
 		if ($width !== null && !is_numeric($width))
-			throw new InvalidArgumentException('Parameter "width" must be numeric');
+			throw new \InvalidArgumentException('Parameter "width" must be numeric');
 		
 		if ($height !== null && !is_numeric($height))
-			throw new InvalidArgumentException('Parameter "height" must be numeric');
+			throw new \InvalidArgumentException('Parameter "height" must be numeric');
 		
 		if (is_null($height))
 		{

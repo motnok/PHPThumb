@@ -75,10 +75,10 @@ class ResizePlugin extends ResizeAbstract implements PluginInterface
 			
 		// make sure our arguments are valid
 		if (!is_numeric($this->_options['width']))
-			throw new InvalidArgumentException('Paremeter "width" must be numeric');
+			throw new \InvalidArgumentException('Paremeter "width" must be numeric');
 		
 		if (!is_numeric($this->_options['height']))
-			throw new InvalidArgumentException('Paremeter "height" must be numeric');
+			throw new \InvalidArgumentException('Paremeter "height" must be numeric');
 		
 		// make sure we're not exceeding our image size if we're not supposed to
 		if ($this->_options['resizeUp'] === false)

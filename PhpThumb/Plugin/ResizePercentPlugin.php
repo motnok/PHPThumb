@@ -57,7 +57,7 @@ class ResizePercentPlugin extends ResizeAbstract implements PluginInterface
 			
 		// make sure our arguments are valid
 		if (!is_numeric($this->_options['percent']))
-			throw new InvalidArgumentException('Paremeter "percent" must be numeric');
+			throw new \InvalidArgumentException('Paremeter "percent" must be numeric');
 		
 		// get the new dimensions...
 		$dimensions = $this->_calcImageSizePercent($this->_options['percent'], $current->getWidth(), $current->getHeight());

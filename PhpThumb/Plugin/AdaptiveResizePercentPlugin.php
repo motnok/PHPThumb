@@ -107,7 +107,7 @@ class AdaptiveResizePercentPlugin extends ResizeAbstract implements PluginInterf
 		
 			// make sure our arguments are valid
 		if ((!is_numeric($width) || $width  == 0) && (!is_numeric($height) || $height == 0))
-			throw new InvalidArgumentException('Parameters "width" and "height" must be numeric and greater than zero');
+			throw new \InvalidArgumentException('Parameters "width" and "height" must be numeric and greater than zero');
 
 		if (!is_numeric($width) || $width  == 0)
 			$width = ( $height * $current->getWidth() ) / $current->getHeight();
