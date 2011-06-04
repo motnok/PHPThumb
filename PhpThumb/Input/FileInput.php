@@ -80,13 +80,13 @@ class FileInput implements InputInterface
 		if ($this->_remoteImage)
 			return file_get_contents($this->_filename);
 		
-		if (!file_exists($this->_fileName))
+		if (!file_exists($this->_filename))
 		{
-			throw new \Exception('Image file not found: ' . $this->_fileName);
+			throw new \Exception('Image file not found: ' . $this->_filename);
 		}
-		elseif (!is_readable($this->_fileName))
+		elseif (!is_readable($this->_filename))
 		{
-			throw new \Exception('Image file not readable: ' . $this->_fileName);
+			throw new \Exception('Image file not readable: ' . $this->_filename);
 		}
 		
 		return file_get_contents($this->_filename);
