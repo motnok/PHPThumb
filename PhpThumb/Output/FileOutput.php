@@ -81,6 +81,18 @@ class FileOutput implements OutputInterface
 	protected $_height = 0;
 	
 	/**
+	 * Name of file
+	 * @var string
+	 */
+	protected $_filename = '';
+	
+	/**
+	 * Absolute path of files folder
+	 * @var string
+	 */
+	protected $_path = '';
+	
+	/**
 	 * Crate a new FileOutput instance
 	 * 
 	 * @param string $filepath
@@ -100,28 +112,29 @@ class FileOutput implements OutputInterface
 	{
 		$data = $processor->__toString();
 		
-		$filename = '';
-
 		//If is dir, generate unique filename
 		if(is_dir($this->_filepath))
 		{
-			$filename .= (substr($this->_filepath, 0,-1) != '/' ? '/' : '');
+			$this->_filename .= (substr($this->_filepath, 0,-1) != '/' ? '/' : '');
 			while(file_exists($this->_filepath . $filename))
 			{
-				$filename .= md5(uniqid(rand(), true));
-				if($this->_options['addExtension'] === true)
-					$filename .= $processor->getFileExtension();
+				$this->_filename .= md5(uniqid(rand(), true));
 			}
 		}
 		else
 		{
-			if($this->_options['addExtension'] === true)
-				$filename .= $processor->getFileExtension();
+			$this->_filename = strrev(substr(strrev($this->_filepath), 0, strpos(strrev($this->_filepath), '/')));
+			$this->_filepath = substr($this->_filepath, 0, strpos($this->_filepath, $this->_filename));
 		}
 
-		file_put_contents($this->_filepath . $filename, $data);
+		if($this->_options['addExtension'] === true)
+			$this->_filename .= $processor->getFileExtension();
+			
+		file_put_contents($this->_filepath . $this->_filename, $data);
 		
-		$this->_file = $this->_filepath . $filename;
+		$this->_file = $this->_filepath . $this->_filename;
+		$this->_filename = $this->_filename;
+		$this->_path = $this->_filepath;
 		$this->_mimeType = $processor->getMimeType();
 		$this->_width = $processor->getWidth();
 		$this->_height = $processor->getHeight();
@@ -167,6 +180,26 @@ class FileOutput implements OutputInterface
 	public function getHeight()
 	{
 		return $this->_height;
+	}
+	
+	/**
+	 * Get the filename of output image
+	 * 
+	 * @return string
+	 */
+	public function getFilename()
+	{
+		return $this->_filename;
+	}
+	
+	/**
+	 * Get the absolute path to folder of image
+	 * 
+	 * @return string
+	 */
+	public function getPath()
+	{
+		return $this->_path;
 	}
 	
 }
