@@ -110,6 +110,43 @@ class PhpThumb
 		return $this;
 	}
 	
+	
+	/**
+	 * Add plugin as array
+	 * 
+	 * Key is plugin name, value is an array of plugin options
+	 * @param array $plugin
+	 * @return PhpThumb
+	 */
+	public function addArrayPlugin(array $plugin)
+	{
+		if(!isset($plugin['plugin']))
+			return $this;
+			
+		$options = array();
+		if(isset($plugin['options']) && is_array($plugin['options']))
+			$options = $plugin['options'];
+			
+		$pluginName = $plugin['plugin'];
+		$class = null;
+		
+		//First check if without plugin namespace exists
+		if(class_exists($pluginName))
+		{
+			$class = new $pluginName($options);
+		}
+		else if(class_exists('PhpThumb\\Plugin\\'. $pluginName))
+		{
+			$pluginName = '\\PhpThumb\\Plugin\\'. $pluginName;
+			$class = new $pluginName($options);
+		}
+		
+		if(!is_null($class))
+			return $this->addPlugin($class);
+		
+		return $this;
+	}
+	
 	/**
 	 * Set input to use for this process
 	 * 
