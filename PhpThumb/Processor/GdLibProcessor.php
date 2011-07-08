@@ -321,7 +321,7 @@ class GdLibProcessor implements ProcessorInterface, CropableInterface,
 				break;
 			case IMAGETYPE_PNG:
 			default: //If string
-				imagejpeg($this->_image);
+				imagepng($this->_image);
 				break;
 		}
 		return ob_get_clean();
